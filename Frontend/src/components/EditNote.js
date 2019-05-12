@@ -10,7 +10,7 @@ class EditNote extends Component {
 
   componentDidMount() {
     const { match: { params } } = this.props;
-    axios.get(`http://127.0.0.1:8080/api/v1/notes/${params.noteId}`)
+    axios.get(`http://localhost:8080/api/v1/notes/${params.noteId}`)
     .then(res => this.setState({noteContent: res.data.noteContent,
       noteId: res.data.noteId
     }));

@@ -15,18 +15,18 @@ class App extends Component {
     }
 
   componentDidMount() { 
-    axios.get('http://127.0.0.1:8080/api/v1/notes')
+    axios.get('http://localhost:8080/api/v1/notes')
     .then(res => this.setState({notes: res.data}));
   }
 
   removeNote = (noteId) => {
-    axios.delete('http://127.0.0.1:8080/api/v1/notes' + noteId);
+    axios.delete('http://localhost:8080/api/v1/notes/' + noteId);
     this.setState({notes: [...this.state.notes.filter(note => note.noteId !== noteId)]});
   }
   
   addNote = (noteContent) => {
     var date = new Date();
-    axios.post('http://127.0.0.1:8080/api/v1/notes', {
+    axios.post('http://localhost:8080/api/v1/notes', {
       noteContent: noteContent,
       dateTime: date.toISOString()
     })
@@ -36,7 +36,7 @@ class App extends Component {
   editNote = (note) => {
     var date = new Date();
     console.log(note.noteId + " : " + note.noteContent);
-    axios.post(`http://127.0.0.1:8080/api/v1/notes`, {
+    axios.post(`http://localhost:8080/api/v1/notes`, {
       noteId: note.noteId,
       noteContent: note.noteContent,
       dateTime: date.toISOString()
@@ -57,7 +57,7 @@ class App extends Component {
         <Notes notes={this.state.notes} editNote={this.editNote} removeNote={this.removeNote}/>
         </React.Fragment>
       )}/>
-      <Route path="/notes/:noteId" render={ props => (
+      <Route path="/note/:noteId" render={ props => (
         <React.Fragment>
           <EditNote {...props} editNote={this.editNote}/>
         </React.Fragment>

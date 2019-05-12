@@ -7,7 +7,7 @@ export class NoteSingle extends Component {
   render() {
     const {noteId, noteContent, dateTime} = this.props.note;
     const excerpt = noteContent.substr(0, 30) + "...";
-    const url = "/notes/" + noteId;
+    const url = "/note/" + noteId;
     return (
       <div style={itemStyle}>
         <p  style={{fontStyle: 'italic', color: 'red'}}>{ dateTime }<div style={iconStyle}><Link to={url}><i className="icon-edit" style={editStyle}></i></Link>
